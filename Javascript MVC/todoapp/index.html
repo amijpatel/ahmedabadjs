@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Example Backbone App</title>
+  <!-- load the bootstrap stylesheet -->
+  <link href="css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="css/todo.css" media="all" rel="stylesheet" type="text/css" />
+  <!-- load the libraries we need -->
+  <script type="text/javascript" src="js/lib/zepto.min.js"></script>
+  <script type="text/javascript" src="js/lib/underscore-min.js"></script>
+  <script type="text/javascript" src="js/lib/backbone-min.js"></script>
+  <!-- load our scripts -->
+  <script type="text/javascript" src="js/todo_router.js"></script>
+  <script type="text/javascript" src="js/models/todo_model.js"></script>
+  <script type="text/javascript" src="js/views/todo_view.js"></script>
+      
+</head>
+<body>
+
+  <div class="container">
+    <div class="page-header">
+      <h3>To Do List</h3> 
+    </div>
+
+    <div class="row">
+      <div class="col-md-6" id="primary-content">
+        <!-- the container that gets populated with the index -->
+      </div>     
+    </div>
+  </div>
+
+  <!--  Define the templates   -->
+  
+  <script type="text/template" id="formTemplate">
+    <div class="well">
+      <div class="alert alert-danger fade in" style="display:none;"></div>
+      <form>
+        <h2></h2>       
+        <div class="form-group">
+          <label>Description:</label>
+          <textarea class="form-control" rows="5" name="description" placeholder="What needs to be done?" ><%= description %></textarea>
+        </div>
+        <button class="save btn btn-large btn-info" type="submit">Save</button>
+        <a href="#todos/index" class="btn btn-large">Cancel</a>
+      </form>
+    </div>
+  </script>
+  
+  <script type="text/template" id="indexTemplate">
+    <div class="well">
+      <a class="btn btn-block btn-large btn-info" href="#todo/new">Create New Todo</a>
+    </div>
+    <table class="table table-striped well">
+      <thead>
+        <tr>         
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </script>
+  
+  <script type="text/template" id="rowTemplate"> 
+    <%if(isdone=="true"){%>
+    <td>
+      <!--<input class="toggle" type="checkbox"/>-->  
+        <img src="images/cancleIcn.jpeg" width="22px" height="22px" class="toggle" id="done" title="Pending">
+        <label class="toggletext addmark"><% print(description.substring(0, 100)) %>...</label>
+        </td>
+    <%}else{%>
+      <td>
+      <!--<input class="toggle" type="checkbox"/> --> 
+      <img src="images/doneBtn.png" width="22px" height="22px" class="toggle" id="done" title="Done"> 
+      <label class="toggletext" title="Done"><% print(description.substring(0, 100)) %>...</label>
+      </td>
+     
+    <%}%>    
+    <td align="right">     
+     <!-- <a href="#" class="delete btn btn-danger btn-small">Delete</a> -->
+      <img src="images/deleteIcn.png" width="22px" height="22px" class="delete" title="Delete">
+    </td>
+  </script> 
+
+  <!-- Template End --> 
+    <script type="text/javascript" src="js/todo.js"></script>
+</body>
+</html>
